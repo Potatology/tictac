@@ -1,12 +1,12 @@
 class Game {
-  var field;
+  var board;
   var turn;
 
-  Game({this.field, this.turn});
+  Game({this.board, this.turn});
 
   factory Game.atStart() {
     return Game(
-      field: [
+      board: [
         [-1, -1, -1],
         [-1, -1, -1],
         [-1, -1, -1]

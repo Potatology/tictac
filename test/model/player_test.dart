@@ -11,29 +11,38 @@ void main() {
       () {
     Game game = Game.atStart();
     Player player = Player();
-    List<int> targetRawColumn = [0, 1];
-    player.makeTurn(game, targetRawColumn);
-    expect(game.field[targetRawColumn[0]][targetRawColumn[1]], 0);
+    List<int> targetCell = [0, 1];
+    player.makeTurn(game, targetCell);
+    expect(game.board[targetCell[0]][targetCell[1]], 0);
   });
   test('When turn is made, field value is changed to 1 when player CROSS', () {
     Game game = Game.atStart();
     Player player = Player(sign: PlayerSign.CROSS);
-    List<int> targetRawColumn = [0, 1];
-    player.makeTurn(game, targetRawColumn);
-    expect(game.field[targetRawColumn[0]][targetRawColumn[1]], 1);
+    List<int> targetCell = [0, 1];
+    player.makeTurn(game, targetCell);
+    expect(game.board[targetCell[0]][targetCell[1]], 1);
   });
   test('Throws exception on attempt to reuse field cell when making turn', () {
     Game game = Game.atStart();
     Player player = Player(sign: PlayerSign.CROSS);
-    List<int> targetRawColumn = [0, 1];
-    game.field[targetRawColumn[0]][targetRawColumn[1]] = 0;
-    expect(() => player.makeTurn(game, targetRawColumn), throwsException);
+    List<int> targetCell = [0, 1];
+    game.board[targetCell[0]][targetCell[1]] = 0;
+    expect(() => player.makeTurn(game, targetCell), throwsException);
   });
   test('Throws exception on attempt to reuse field cell when making turn', () {
     Game game = Game.atStart();
     Player player = Player(sign: PlayerSign.ZERO);
-    List<int> targetRawColumn = [0, 1];
-    game.field[targetRawColumn[0]][targetRawColumn[1]] = 1;
-    expect(() => player.makeTurn(game, targetRawColumn), throwsException);
+    List<int> targetCell = [0, 1];
+    game.board[targetCell[0]][targetCell[1]] = 1;
+    expect(() => player.makeTurn(game, targetCell), throwsException);
+  });
+  test('Game turn counter increments when turn is made', () {
+    Game game = Game.atStart();
+    Player player = Player(sign: PlayerSign.ZERO);
+    List<int> targetCell = [0, 1];
+    int row = targetCell[0];
+    int col = targetCell[1];
+    player.makeTurn(game, [row, col]);
+    expect(game.turn, 1);
   });
 }

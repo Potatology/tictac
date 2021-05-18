@@ -4,7 +4,7 @@ import 'package:tac_toe/model/game.dart';
 void main() {
   test('Initializes empty game field', () {
     Game gameField = Game.atStart();
-    expect(gameField.field, [
+    expect(gameField.board, [
       [-1, -1, -1],
       [-1, -1, -1],
       [-1, -1, -1]

@@ -1,6 +1,6 @@
 class Game {
-  var board;
-  var turn;
+  List board;
+  int turn;
 
   Game({this.board, this.turn});
 
@@ -13,5 +13,9 @@ class Game {
       ],
       turn: 0,
     );
+  }
+
+  bool hasWin(List<int> line) {
+    return line.toSet().length > 1 ? false : true;
   }
 }

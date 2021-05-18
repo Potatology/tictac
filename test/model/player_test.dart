@@ -29,4 +29,11 @@ void main() {
     game.field[targetRawColumn[0]][targetRawColumn[1]] = 0;
     expect(() => player.makeTurn(game, targetRawColumn), throwsException);
   });
+  test('Throws exception on attempt to reuse field cell when making turn', () {
+    Game game = Game.atStart();
+    Player player = Player(sign: PlayerSign.ZERO);
+    List<int> targetRawColumn = [0, 1];
+    game.field[targetRawColumn[0]][targetRawColumn[1]] = 1;
+    expect(() => player.makeTurn(game, targetRawColumn), throwsException);
+  });
 }
